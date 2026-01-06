@@ -22,6 +22,7 @@ planning.
 
 
 ## Architecture Diagram
-![alt text](image.png)
+<img width="616" height="382" alt="image" src="https://github.com/user-attachments/assets/3bf3c9e5-fe84-4d4e-b300-70d1815fb251" />
+
 
 
