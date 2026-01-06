@@ -24,5 +24,18 @@ planning.
 ## Architecture Diagram
 <img width="616" height="382" alt="image" src="https://github.com/user-attachments/assets/3bf3c9e5-fe84-4d4e-b300-70d1815fb251" />
 
+## User Stories
+- As a Library Manager, I want to receive automated, reliable reports on our collection and circulation data quality,
+So that I can make informed decisions about resource allocation, identify trends in patron behavior, and ensure our catalog accuracy without depending on manual data checks.
 
+- As a Data Analyst, I want to generate infographics using Power BI so that the data can be presented visually to stakeholders.
 
+- As a Librarian/User, I want to be able to lookup book statuses, customer details etc.
+
+- As a Data Engineer, I want to validate the data transformation process with end-to-end testing to ensure data integrity is maintained throughout the pipeline.
+
+- As a data engineer, I want to build an automated solution that cleans and validates the library data. So that I can provide stakeholders with library metrics.
+
+- As a data engineer, I want to build a monitoring dashboard. So that I can view the results of my automated pipeline.
+
+- As a Stakeholder, I want to have a clear documentation of the architecture design, so that I can understand the structure and flow of the ETL process.
