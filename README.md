@@ -5,7 +5,6 @@ Marina has cought up!
 Architecture Diagram
 ![alt text](image.png)
 
-Jeni Lentin 06/01/2026 11:48 • 
 User Story: Library Stakeholder Data Quality Insights
 As a library operations manager,
 I want to receive automated, reliable reports on our collection and circulation data quality,
