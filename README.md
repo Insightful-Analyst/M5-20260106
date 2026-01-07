@@ -39,3 +39,9 @@ So that I can make informed decisions about resource allocation, identify trends
 - As a data engineer, I want to build a monitoring dashboard. So that I can view the results of my automated pipeline.
 
 - As a Stakeholder, I want to have a clear documentation of the architecture design, so that I can understand the structure and flow of the ETL process.
+
+## Project Progress
+
+- The jupiter notebook created to transform the library's raw daya was converted into a python file.
+- The script was enhanched by adding functions, an enriched date colum, and loading the result table into a sql database.
+- A unit test file was created to test the enriched_dateDuration calculation (the test was done on the python file created by the tutor and stored in the solutions_nirosh folder)
