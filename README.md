@@ -75,3 +75,8 @@ cd .\docker_demo
 
 - Step 4: Run the container/image
   eg: docker run myfirstcontainer  
+
+
+Using the above steps, the python script created to clean the raw data from the library manager has been run in a docker container successsfully.
+All the files and output relating to the containerisation is stored in the folder C:\Users\Admin\Desktop\M5-20260106\library_docker
+

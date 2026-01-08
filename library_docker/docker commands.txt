@@ -1,0 +1,4 @@
+cd..  
+cd ./library_docker  
+docker build -t librarycleaner .    
+docker run -v C:/Users/Admin/Desktop/M5-20260106/sample-data:/data -v C:/Users/Admin/Desktop/M5-20260106/library_docker/docker_output:/output librarycleaner
