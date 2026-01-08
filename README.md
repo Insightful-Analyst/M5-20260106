@@ -45,3 +45,13 @@ So that I can make informed decisions about resource allocation, identify trends
 - The jupiter notebook created to transform the library's raw daya was converted into a python file.
 - The script was enhanched by adding functions, an enriched date colum, and loading the result table into a sql database.
 - A unit test file was created to test the enriched_dateDuration calculation (the test was done on the python file created by the tutor and stored in the solutions_nirosh folder)
+
+## Requirements Update
+Library now wants their customers need to able to log in and be able to see data relevant to them.
+I need a proposed solution/ architecture diagram.
+
+Create an architecture diagram for new requirement:
+- User must be able to log in and see data about their library usage.
+- This must be a simple, low budget POC but production grade.
+
+## Updated Architecture Diagram
