@@ -16,5 +16,5 @@ class Calculator:
         return self.num1 / self.num2
     
 if __name__ == '__main__':
-    myCalc = Calculator(num1 = 10, num2 = 20)
-    print (myCalc.get_product())
+    myCalc = Calculator(num1 = 64, num2 = 12)
+    print (myCalc.get_quotient())
