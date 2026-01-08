@@ -45,3 +45,33 @@ So that I can make informed decisions about resource allocation, identify trends
 - The jupiter notebook created to transform the library's raw daya was converted into a python file.
 - The script was enhanched by adding functions, an enriched date colum, and loading the result table into a sql database.
 - A unit test file was created to test the enriched_dateDuration calculation (the test was done on the python file created by the tutor and stored in the solutions_nirosh folder)
+
+## Requirements Update
+Library now wants their customers need to able to log in and be able to see data relevant to them.
+I need a proposed solution/ architecture diagram.
+
+Create an architecture diagram for new requirement:
+- User must be able to log in and see data about their library usage.
+- This must be a simple, low budget POC but production grade.
+
+## Updated Architecture Diagram
+<img width="921" height="501" alt="image" src="https://github.com/user-attachments/assets/2bd9e50a-18f5-43b7-b717-68f6ead6f2d7" />
+
+## Cotainerisation with Docker
+Docker Commands: docker build -t name . docker run name
+
+- Step 1: Create a Dockerfile to create your contianer
+  eg: FROM python:3.12-slim
+  WORKDIR /app
+  COPY . /app
+  ENTRYPOINT ["python3", "./hello.py"]
+  
+- Step 2: Change directory to the correct one
+  eg: cd ..
+cd .\docker_demo   
+
+- Step 3: Build the container/image
+  eg: docker build -t myfirstcontainer .
+
+- Step 4: Run the container/image
+  eg: docker run myfirstcontainer  
