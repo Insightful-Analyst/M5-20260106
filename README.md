@@ -55,3 +55,4 @@ Create an architecture diagram for new requirement:
 - This must be a simple, low budget POC but production grade.
 
 ## Updated Architecture Diagram
+<img width="921" height="501" alt="image" src="https://github.com/user-attachments/assets/2bd9e50a-18f5-43b7-b717-68f6ead6f2d7" />
