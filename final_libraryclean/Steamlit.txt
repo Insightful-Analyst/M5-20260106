@@ -1,0 +1,8 @@
+Will need to look into to Steamlit properly.
+Fow now wanted to see it can do so used script from Claude to create streamlit dashboard.
+Attempted to run it using: streamlit run streamlit_dashboard.py in the command line, but it was error'd
+Claude suggested to use a different port: streamlit run streamlit_dashboard.py --server.port 8502
+
+This has worked! 
+
+Now that I have idea of what it can do, may need to look into using it in a project.
