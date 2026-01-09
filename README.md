@@ -86,6 +86,7 @@ All the files and output relating to the containerisation is stored in the folde
 - It stores the cleaned library files and the pipeline metrics in CSV format in the output-data folder.
 - From the pipleine metrics CSV a simple Power BI report was created to monitor the efficiency of the pipeline.
 - The Power BI report visualises pipeline execution metrics to provide operational visibility into ETL performance and data quality.
+- The Data Sclicer at the top right side of the report can be used to view the metrics for the different data files.
 
 ## Screenshot of the Power BI Report: 
 <img width="1413" height="793" alt="image" src="https://github.com/user-attachments/assets/40ebd5f5-c70d-46fa-a59c-4148cae543df" />
