@@ -1,0 +1,23 @@
+execution_timestamp,dataset,metric_name,metric_value
+2026-01-09 11:59:35,systembook_metrics,initial_row_count,114.0
+2026-01-09 11:59:35,systembook_metrics,duplicates_dropped,92.0
+2026-01-09 11:59:35,systembook_metrics,blank_cells_found,8.0
+2026-01-09 11:59:35,systembook_metrics,na_rows_dropped,2.0
+2026-01-09 11:59:35,systembook_metrics,Book checkout_invalid_dates,1.0
+2026-01-09 11:59:35,systembook_metrics,Book checkout_rows_dropped,1.0
+2026-01-09 11:59:35,systembook_metrics,Book Returned_invalid_dates,0.0
+2026-01-09 11:59:35,systembook_metrics,Book Returned_rows_dropped,0.0
+2026-01-09 11:59:35,systembook_metrics,invalid_loans_found,6.0
+2026-01-09 11:59:35,systembook_metrics,invalid_loans_dropped,6.0
+2026-01-09 11:59:35,systembook_metrics,id_columns_converted,2.0
+2026-01-09 11:59:35,systembook_metrics,final_row_count,13.0
+2026-01-09 11:59:35,systembook_metrics,total_rows_dropped,101.0
+2026-01-09 11:59:35,systembook_metrics,data_retention_rate,11.4
+2026-01-09 11:59:35,customers_metrics,initial_row_count,9.0
+2026-01-09 11:59:35,customers_metrics,duplicates_dropped,0.0
+2026-01-09 11:59:35,customers_metrics,blank_cells_found,2.0
+2026-01-09 11:59:35,customers_metrics,na_rows_dropped,1.0
+2026-01-09 11:59:35,customers_metrics,id_columns_converted,1.0
+2026-01-09 11:59:35,customers_metrics,final_row_count,8.0
+2026-01-09 11:59:35,customers_metrics,total_rows_dropped,1.0
+2026-01-09 11:59:35,customers_metrics,data_retention_rate,88.89

@@ -1,0 +1,29 @@
+{
+    "execution_timestamp": "2026-01-09 11:36:27",
+    "systembook_metrics": {
+        "initial_row_count": 114,
+        "duplicates_dropped": 92,
+        "blank_cells_found": 8,
+        "na_rows_dropped": 2,
+        "Book checkout_invalid_dates": 1,
+        "Book checkout_rows_dropped": 1,
+        "Book Returned_invalid_dates": 0,
+        "Book Returned_rows_dropped": 0,
+        "invalid_loans_found": 6,
+        "invalid_loans_dropped": 6,
+        "id_columns_converted": 2,
+        "final_row_count": 13,
+        "total_rows_dropped": 101,
+        "data_retention_rate": 11.4
+    },
+    "customers_metrics": {
+        "initial_row_count": 9,
+        "duplicates_dropped": 0,
+        "blank_cells_found": 2,
+        "na_rows_dropped": 1,
+        "id_columns_converted": 1,
+        "final_row_count": 8,
+        "total_rows_dropped": 1,
+        "data_retention_rate": 88.89
+    }
+}

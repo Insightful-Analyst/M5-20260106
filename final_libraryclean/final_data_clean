@@ -1,0 +1,180 @@
+import pandas as pd
+import os
+import json
+from datetime import datetime
+
+
+class MetricsLogger:
+    """Class to track and log data cleaning metrics"""
+
+    def __init__(self):
+        self.execution_timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.metrics = {
+            'systembook_metrics': {},
+            'customers_metrics': {}
+        }
+
+    def log_metric(self, dataset, metric_name, value):
+        """Log a metric for a specific dataset"""
+        self.metrics[dataset][metric_name] = value
+
+    def save_metrics_flat_csv(self, output_path):
+        """Save metrics in flat structure for Power BI"""
+        rows = []
+        for dataset, metrics in self.metrics.items():
+            for metric, value in metrics.items():
+                rows.append({
+                    "execution_timestamp": self.execution_timestamp,
+                    "dataset": dataset,
+                    "metric_name": metric,
+                    "metric_value": value
+                })
+
+        pd.DataFrame(rows).to_csv(output_path, index=False)
+
+    def print_summary(self):
+        print("\n" + "=" * 60)
+        print("PIPELINE EXECUTION METRICS SUMMARY")
+        print("=" * 60)
+        for dataset, metrics in self.metrics.items():
+            print(f"\n{dataset.upper()}:")
+            for metric, value in metrics.items():
+                print(f"  {metric}: {value}")
+        print("=" * 60 + "\n")
+
+
+# Initialize metrics logger
+metrics_logger = MetricsLogger()
+
+
+# -------------------- DATA CLEANING FUNCTIONS --------------------
+
+def fileLoader(filepath, dataset_name):
+    df = pd.read_csv(filepath)
+    metrics_logger.log_metric(dataset_name, 'initial_row_count', len(df))
+    return df
+
+
+def duplicateCleaner(df, dataset_name):
+    initial = len(df)
+    df = df.drop_duplicates().reset_index(drop=True)
+    metrics_logger.log_metric(dataset_name, 'duplicates_dropped', initial - len(df))
+    return df
+
+
+def naCleaner(df, dataset_name):
+    initial = len(df)
+    blank_cells = int(df.isna().sum().sum())
+    df = df.dropna().reset_index(drop=True)
+
+    metrics_logger.log_metric(dataset_name, 'blank_cells_found', blank_cells)
+    metrics_logger.log_metric(dataset_name, 'na_rows_dropped', initial - len(df))
+    return df
+
+
+def dateCleaner(col, df, dataset_name):
+    initial = len(df)
+    df[col] = df[col].str.replace('"', "", regex=True)
+    df[col] = pd.to_datetime(df[col], dayfirst=True, errors='coerce')
+
+    invalid_dates = df[col].isna().sum()
+    df = df[df[col].notna()].reset_index(drop=True)
+
+    metrics_logger.log_metric(dataset_name, f'{col}_invalid_dates', int(invalid_dates))
+    metrics_logger.log_metric(dataset_name, f'{col}_rows_dropped', initial - len(df))
+    return df
+
+
+def idCleaner(id_columns, df, dataset_name):
+    converted = 0
+    for col in id_columns:
+        if col in df.columns:
+            df[col] = df[col].astype('Int64')
+            converted += 1
+
+    metrics_logger.log_metric(dataset_name, 'id_columns_converted', converted)
+    return df
+
+
+def enrich_dateDuration(colA, colB, df, dataset_name):
+    df['days_borrowed'] = (df[colB] - df[colA]).dt.days
+    df['valid_loan_flag'] = df['days_borrowed'] >= 0
+
+    invalid_loans = (~df['valid_loan_flag']).sum()
+    metrics_logger.log_metric(dataset_name, 'invalid_loans_found', int(invalid_loans))
+
+    df = df[df['valid_loan_flag']].reset_index(drop=True)
+    metrics_logger.log_metric(dataset_name, 'invalid_loans_dropped', int(invalid_loans))
+    return df
+
+
+# -------------------- MAIN PIPELINE --------------------
+
+if __name__ == '__main__':
+
+    print("********** PIPELINE START **********")
+
+    input_dir = 'C:/Users/Admin/Desktop/M5-20260106/sample-data'
+    output_dir = 'C:/Users/Admin/Desktop/M5-20260106/output-data'
+    os.makedirs(output_dir, exist_ok=True)
+
+    # -------- SYSTEM BOOK DATA --------
+    systembook_path = f'{input_dir}/03_Library Systembook.csv'
+    date_columns = ['Book checkout', 'Book Returned']
+    id_columns_loans = ['Id', 'Customer ID']
+
+    df = fileLoader(systembook_path, 'systembook_metrics')
+    df = duplicateCleaner(df, 'systembook_metrics')
+    df = naCleaner(df, 'systembook_metrics')
+
+    for col in date_columns:
+        df = dateCleaner(col, df, 'systembook_metrics')
+
+    df = enrich_dateDuration('Book checkout', 'Book Returned', df, 'systembook_metrics')
+    df = idCleaner(id_columns_loans, df, 'systembook_metrics')
+
+    final_rows = len(df)
+    initial_rows = metrics_logger.metrics['systembook_metrics']['initial_row_count']
+
+    metrics_logger.log_metric('systembook_metrics', 'final_row_count', final_rows)
+    metrics_logger.log_metric('systembook_metrics', 'total_rows_dropped', initial_rows - final_rows)
+    metrics_logger.log_metric(
+        'systembook_metrics',
+        'data_retention_rate',
+        round((final_rows / initial_rows) * 100, 2)
+    )
+
+    df.to_csv(f'{output_dir}/cleaned_library_systembook.csv', index=False)
+
+    # -------- CUSTOMER DATA --------
+    customers_path = f'{input_dir}/03_Library SystemCustomers.csv'
+    id_columns_customers = ['Customer ID']
+
+    df2 = fileLoader(customers_path, 'customers_metrics')
+    df2 = duplicateCleaner(df2, 'customers_metrics')
+    df2 = naCleaner(df2, 'customers_metrics')
+    df2 = idCleaner(id_columns_customers, df2, 'customers_metrics')
+
+    final_rows_cust = len(df2)
+    initial_rows_cust = metrics_logger.metrics['customers_metrics']['initial_row_count']
+
+    metrics_logger.log_metric('customers_metrics', 'final_row_count', final_rows_cust)
+    metrics_logger.log_metric(
+        'customers_metrics',
+        'total_rows_dropped',
+        initial_rows_cust - final_rows_cust
+    )
+    metrics_logger.log_metric(
+        'customers_metrics',
+        'data_retention_rate',
+        round((final_rows_cust / initial_rows_cust) * 100, 2)
+    )
+
+    df2.to_csv(f'{output_dir}/cleaned_customers.csv', index=False)
+
+    # -------- METRICS OUTPUT --------
+    metrics_logger.print_summary()
+
+    metrics_logger.save_metrics_flat_csv(f'{output_dir}/pipeline_metrics.csv')
+
+    print("********** PIPELINE COMPLETE **********")
