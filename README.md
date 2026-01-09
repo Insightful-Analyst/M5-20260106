@@ -80,3 +80,9 @@ cd .\docker_demo
 Using the above steps, the python script created to clean the raw data from the library manager has been run in a docker container successsfully.
 All the files and output relating to the containerisation is stored in the folder C:\Users\Admin\Desktop\M5-20260106\library_docker
 
+## Project Summary
+
+- The final_data_clean Python script performs data extraction, transformation, and loading (ETL) for library datasets while - automatically capturing pipeline execution metrics for monitoring and reporting.
+- It stores the cleaned library files and the pipeline metrics in CSV format in the output-data folder.
+- From the pipleine metrics CSV a simple Power BI report was created to monitor the efficiency of the pipeline.
+- The Power BI report visualises pipeline execution metrics to provide operational visibility into ETL performance and data quality.
